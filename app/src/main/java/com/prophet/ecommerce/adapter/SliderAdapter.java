@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.prophet.ecommerce.R;
-import com.prophet.ecommerce.model.Slider;
+import com.prophet.ecommerce.model.homeFragment.Slider;
 
 import java.util.List;
 

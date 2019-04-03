@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.prophet.ecommerce.R;
-import com.prophet.ecommerce.model.Category;
+import com.prophet.ecommerce.model.homeFragment.Category;
 
 import java.util.List;
 

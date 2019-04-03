@@ -1,4 +1,4 @@
-package com.prophet.ecommerce.model;
+package com.prophet.ecommerce.model.homeFragment;
 
 public class Slider {
     private int banner;

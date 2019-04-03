@@ -4,26 +4,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:paddingBottom="8dp"
     android:elevation="3dp"
-    android:background="@drawable/slider_style">
+    android:background="@drawable/slider_style"
+    android:layout_margin="8dp">
+
 
     <TextView
-        android:id="@+id/deals_layout_title"
+        android:id="@+id/homefragment_grid_product_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Deals of the Day"
-        android:textAllCaps="false"
-        android:textColor="#111111"
+        android:text="TextView"
+        android:textColor="#111"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/deals_layout_button"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/homefragment_grid_product_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/deals_layout_button" />
+        app:layout_constraintTop_toTopOf="@+id/homefragment_grid_product_button" />
 
     <Button
-        android:id="@+id/deals_layout_button"
+        android:id="@+id/homefragment_grid_product_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -33,18 +33,24 @@
         android:text="View all"
         android:textColor="@color/white"
         android:textSize="12sp"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/homefragment_grid_product_gridview"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/deals_layout_recyclerView"
+    <GridView
+        android:id="@+id/homefragment_grid_product_gridview"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-
+        android:layout_height="340dp"
+        android:layout_marginBottom="8dp"
+        android:background="#d9d9d9"
+        android:horizontalSpacing="1dp"
+        android:numColumns="2"
+        android:verticalSpacing="1dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deals_layout_button" />
+        app:layout_constraintTop_toBottomOf="@+id/homefragment_grid_product_button">
+
+    </GridView>
+
 </android.support.constraint.ConstraintLayout>

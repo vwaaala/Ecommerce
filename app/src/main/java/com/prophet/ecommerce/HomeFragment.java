@@ -13,14 +13,20 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.prophet.ecommerce.R;
 import com.prophet.ecommerce.adapter.CategoryAdapter;
+import com.prophet.ecommerce.adapter.GridProductAdapter;
 import com.prophet.ecommerce.adapter.SliderAdapter;
-import com.prophet.ecommerce.model.Category;
-import com.prophet.ecommerce.model.Slider;
+import com.prophet.ecommerce.adapter.homeFragment.DealsAdapter;
+import com.prophet.ecommerce.model.homeFragment.Category;
+import com.prophet.ecommerce.model.homeFragment.ProductModelLite;
+import com.prophet.ecommerce.model.homeFragment.Slider;
 
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -41,15 +47,13 @@ public class HomeFragment extends Fragment {
 
 
     ////////////////////////////
-    // todo: Slider advertisement
-
+    // todo: Slider
     private ViewPager sliderViewPager;
     private List<Slider> sliderList;
     private int dummyInt = 2;
     private Timer timer;
     final private long DELAY_TIME = 2000;
     final private long PERIOD_TIME = 2000;
-
     ////////////////////////////
 
 
@@ -58,6 +62,21 @@ public class HomeFragment extends Fragment {
     private ImageView stripImage;
     private ConstraintLayout stripContainer;
     //////////////////////
+
+
+    //////////////////////
+    // todo: ProductModelLite
+    private TextView dealsLayoutTile;
+    private Button dealsViewAllButton;
+    private RecyclerView dealsRecyclerView;
+    //////////////////////
+
+    //////////////////////
+    // todo: Grid Product
+    private TextView gridLayoutTitle;
+    private Button gridViewAllButton;
+    private GridView gridLayoutGridView;
+    /////////////////////
 
 
     @Override
@@ -163,16 +182,48 @@ public class HomeFragment extends Fragment {
 
 
         //////////////////
-        // todo: strip add body
+        // todo: strip add
         stripImage = view.findViewById(R.id.strip_ad_imageView);
         stripContainer = view.findViewById(R.id.strip_ad_container);
 
         stripImage.setImageResource(R.mipmap.s1);
         stripContainer.setBackgroundColor(Color.parseColor("#000000"));
-
-
         //////////////////
 
+        //////////////////
+        // todo: deals
+        List<ProductModelLite> productModelLiteList = new ArrayList<>();
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d1, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d2, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d3, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d4, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d5, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d6, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d1, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d3, "Redmi 5", "Snapdragon 450", "$199"));
+
+
+        dealsLayoutTile = view.findViewById(R.id.deals_layout_title);
+        dealsViewAllButton = view.findViewById(R.id.deals_layout_button);
+        dealsRecyclerView = view.findViewById(R.id.deals_layout_recyclerView);
+
+        DealsAdapter dealsAdapter = new DealsAdapter(productModelLiteList);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        dealsRecyclerView.setLayoutManager(linearLayoutManager);
+        dealsRecyclerView.setAdapter(dealsAdapter);
+        dealsAdapter.notifyDataSetChanged();
+        /////////////////
+
+
+        /////////////////
+        // todo: Grid product
+        gridLayoutTitle = view.findViewById(R.id.homefragment_grid_product_title);
+        gridViewAllButton = view.findViewById(R.id.homefragment_grid_product_button);
+        gridLayoutGridView = view.findViewById(R.id.homefragment_grid_product_gridview);
+
+        gridLayoutGridView.setAdapter(new GridProductAdapter(productModelLiteList));
+        /////////////////
         return view;
     }
 

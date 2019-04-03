@@ -160,7 +160,7 @@ public class ResetPasswordFragment extends Fragment {
                                      // Using victory TextView to display the moron
                                      victory.setText(error);
                                      // giving the moron text, a moron color
-                                     victory.setTextColor(getResources().getColor(R.color.error_yellow));
+                                     victory.setTextColor(getResources().getColor(R.color.yellow));
                                      // giving the icon a moron color
                                      emailIcon.setImageDrawable(getResources().getDrawable(R.drawable.ic_email_yellow));
                                      // with a little flower transition
