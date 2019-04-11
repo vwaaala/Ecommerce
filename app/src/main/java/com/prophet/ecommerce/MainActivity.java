@@ -16,7 +16,12 @@ import android.widget.FrameLayout;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final int HOME_FRAGMENT = 0;
+    private static final int CART_FRAGMENT = 1;
+
     private FrameLayout frameLayout;
+    private static int CURRENT_FRAGMENT;
+    private NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +29,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        // Disable activity title on app bar
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setTitle("Dashboard");
 
         // Casting layout elements
         frameLayout = findViewById(R.id.main_frame);
@@ -35,11 +39,12 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navigationView.getMenu().getItem(0).setChecked(true);
 
         // Home is set here
-        setFragment(new HomeFragment());
+        setFragment(new HomeFragment(), HOME_FRAGMENT);
     }
 
     @Override
@@ -55,7 +60,10 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+
+        if (CURRENT_FRAGMENT == HOME_FRAGMENT){
+            getMenuInflater().inflate(R.menu.main, menu);
+        }
         return true;
     }
 
@@ -73,7 +81,7 @@ public class MainActivity extends AppCompatActivity
         } else if ( id == R.id.action_notification){
             // todo: notification
         } else if ( id == R.id.action_cart){
-            // todo: cart
+            myCart();
         }
 
         return super.onOptionsItemSelected(item);
@@ -86,18 +94,18 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home){
-            // todo: home
+            invalidateOptionsMenu();
+            setFragment(new HomeFragment(), HOME_FRAGMENT);
         } else if (id == R.id.nav_order) {
-            // todo: order
-        } else if (id == R.id.nav_cart) {
 
-            // todo:  nav cart
+        } else if (id == R.id.nav_cart) {
+            myCart();
         } else if (id == R.id.nav_wishlist) {
-            // todo: nav wishlist
+
         } else if (id == R.id.nav_reward) {
-            // todo: nav reward
+
         } else if (id == R.id.nav_account) {
-            // todo: nav account
+
         } else if (id == R.id.nav_signOut){
             // todo: signout
         }
@@ -111,9 +119,20 @@ public class MainActivity extends AppCompatActivity
      * Helper for fragment transaction
      *
      */
-    private void setFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(frameLayout.getId(), fragment);
-        fragmentTransaction.commit();
+    private void setFragment(Fragment fragment, int fragmentNo){
+        if (CURRENT_FRAGMENT != CURRENT_FRAGMENT){
+            CURRENT_FRAGMENT = fragmentNo;
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
+            fragmentTransaction.replace(frameLayout.getId(), fragment);
+            fragmentTransaction.commit();
+        }
+    }
+
+    private void myCart(){
+        // runs onCreateOptionMenu again
+        invalidateOptionsMenu();
+        setFragment(new CartFragment(), CART_FRAGMENT);
+        navigationView.getMenu().getItem(2).setChecked(true);
     }
 }

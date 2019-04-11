@@ -1,5 +1,6 @@
-package com.prophet.ecommerce.adapter;
+package com.prophet.ecommerce.adapter.category;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.prophet.ecommerce.CategoryActivity;
 import com.prophet.ecommerce.R;
 import com.prophet.ecommerce.model.homeFragment.Category;
 
@@ -34,7 +36,7 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
         // list theke item ber kore view the place krtisi
         String icon = categoryList.get(postion).getIconLink();
         String name = categoryList.get(postion).getCategoryName();
-        viewHolder.setCategoryName(name);
+        viewHolder.setCategory(name, postion);
 
     }
 
@@ -57,8 +59,20 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHo
 
         }
         // Set category name
-        private void setCategoryName(String name){
+        private void setCategory(final String name, final int position){
             categoryName.setText(name);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (position != 0){
+                        Intent intent = new Intent(itemView.getContext(), CategoryActivity.class);
+                        intent.putExtra("CategoryName", name);
+                        itemView.getContext().startActivity(intent);
+                    }
+
+                }
+            });
         }
     }
 }

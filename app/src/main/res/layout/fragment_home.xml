@@ -14,69 +14,18 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:elevation="3dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_fragment_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/stripLinearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp"
-                android:background="@drawable/slider_style"
-                android:elevation="3dp"
-                android:padding="4dp">
-
-                <include layout="@layout/homefragment_strip_layout" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/sliderLinearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp">
-
-                <include layout="@layout/homefragment_slider_viewpager_layout" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/dealLinearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp">
-
-                <include layout="@layout/homefragment_deals_layout" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/gridLinearLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="4dp"
-                android:layout_marginEnd="4dp">
-
-                <include layout="@layout/homefragment_grid_product_layout" />
-            </LinearLayout>
-
-
-        </LinearLayout>
-    </ScrollView>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/home_fragment_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_recyclerView" />
 
 </android.support.constraint.ConstraintLayout>

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.prophet.ecommerce.auth.RegisterActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -20,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         // Sleeps this activity after 3seconds
-        SystemClock.sleep(3000);
+        SystemClock.sleep(1500);
 
     }
 

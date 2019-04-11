@@ -1,5 +1,6 @@
-package com.prophet.ecommerce.adapter;
+package com.prophet.ecommerce.adapter.homeFragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.prophet.ecommerce.ProductDetailActivity;
 import com.prophet.ecommerce.R;
 import com.prophet.ecommerce.model.homeFragment.ProductModelLite;
 
@@ -23,6 +25,10 @@ public class GridProductAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
+        // Showing 4 items
+        if (productList.size() > 4){
+            return 4;
+        }
         return 4;
     }
 
@@ -37,16 +43,23 @@ public class GridProductAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
         View view;
         if (convertView == null){
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.homefragment_deals_item, parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.homefragment_grid_layout_item, parent, false);
             view.setElevation(0);
             view.setBackgroundColor(Color.parseColor("#ffffff"));
-            ImageView imageView = view.findViewById(R.id.homefragment_deals_item_image);
-            TextView title = view.findViewById(R.id.homefragment_deals_item_title);
-            TextView description = view.findViewById(R.id.homefragment_deals_item_description);
-            TextView price = view.findViewById(R.id.homefragment_deals_item_price);
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(parent.getContext(), ProductDetailActivity.class);
+                    parent.getContext().startActivity(intent);
+                }
+            });
+            ImageView imageView = view.findViewById(R.id.homefragment_grid_item_image);
+            TextView title = view.findViewById(R.id.homefragment_grid_item_title);
+            TextView description = view.findViewById(R.id.homefragment_grid_item_description);
+            TextView price = view.findViewById(R.id.homefragment_grid_item_price);
 
             imageView.setImageResource(productList.get(position).getImage());
             title.setText(productList.get(position).getTitle());

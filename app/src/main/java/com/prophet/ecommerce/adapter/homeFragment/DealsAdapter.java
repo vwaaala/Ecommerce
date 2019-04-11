@@ -1,5 +1,6 @@
 package com.prophet.ecommerce.adapter.homeFragment;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.prophet.ecommerce.ProductDetailActivity;
 import com.prophet.ecommerce.R;
 import com.prophet.ecommerce.model.homeFragment.ProductModelLite;
 
@@ -50,7 +52,11 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return deals.size();
+        if (deals.size() > 8){
+            return 8;
+        } else {
+            return deals.size();
+        }
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -59,12 +65,20 @@ public class DealsAdapter extends RecyclerView.Adapter<DealsAdapter.ViewHolder> 
         private TextView descriptionView;
         private TextView priceView;
 
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.homefragment_deals_item_image);
             tileView = itemView.findViewById(R.id.homefragment_deals_item_title);
             descriptionView = itemView.findViewById(R.id.homefragment_deals_item_description);
             priceView = itemView.findViewById(R.id.homefragment_deals_item_price);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), ProductDetailActivity.class);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
 
         private void setImageView(int resource){

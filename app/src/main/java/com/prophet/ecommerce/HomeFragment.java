@@ -18,12 +18,13 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.prophet.ecommerce.R;
-import com.prophet.ecommerce.adapter.CategoryAdapter;
-import com.prophet.ecommerce.adapter.GridProductAdapter;
-import com.prophet.ecommerce.adapter.SliderAdapter;
+import com.prophet.ecommerce.adapter.category.CategoryAdapter;
+import com.prophet.ecommerce.adapter.homeFragment.GridProductAdapter;
+import com.prophet.ecommerce.adapter.homeFragment.SliderAdapter;
 import com.prophet.ecommerce.adapter.homeFragment.DealsAdapter;
+import com.prophet.ecommerce.adapter.homeFragment.HomePageAdapter;
 import com.prophet.ecommerce.model.homeFragment.Category;
+import com.prophet.ecommerce.model.homeFragment.HomePageModel;
 import com.prophet.ecommerce.model.homeFragment.ProductModelLite;
 import com.prophet.ecommerce.model.homeFragment.Slider;
 
@@ -40,43 +41,10 @@ public class HomeFragment extends Fragment {
 
     private RecyclerView categoryRecyclerView;
     private CategoryAdapter categoryAdapter;
+    private RecyclerView homeContentRecyclerView;
     public HomeFragment() {
         // Required empty public constructor
     }
-
-
-
-    ////////////////////////////
-    // todo: Slider
-    private ViewPager sliderViewPager;
-    private List<Slider> sliderList;
-    private int dummyInt = 2;
-    private Timer timer;
-    final private long DELAY_TIME = 2000;
-    final private long PERIOD_TIME = 2000;
-    ////////////////////////////
-
-
-    //////////////////////
-    // todo: Strip add
-    private ImageView stripImage;
-    private ConstraintLayout stripContainer;
-    //////////////////////
-
-
-    //////////////////////
-    // todo: ProductModelLite
-    private TextView dealsLayoutTile;
-    private Button dealsViewAllButton;
-    private RecyclerView dealsRecyclerView;
-    //////////////////////
-
-    //////////////////////
-    // todo: Grid Product
-    private TextView gridLayoutTitle;
-    private Button gridViewAllButton;
-    private GridView gridLayoutGridView;
-    /////////////////////
 
 
     @Override
@@ -113,85 +81,29 @@ public class HomeFragment extends Fragment {
         /////////////////////
         // todo: Slider advertisement
 
-        sliderViewPager = view.findViewById(R.id.banner_slider_viewpager);
-        sliderList = new ArrayList<>();
+
+        List<Slider> sliderList = new ArrayList<>();
 
 
 
-        // laster da
-        sliderList.add(new Slider(R.mipmap.s5, "#ffffff"));
-        sliderList.add(new Slider(R.mipmap.s6, "#ffffff"));
-
-        // mal
         sliderList.add(new Slider(R.mipmap.s1, "#ffffff"));
         sliderList.add(new Slider(R.mipmap.s2, "#ffffff"));
         sliderList.add(new Slider(R.mipmap.s3, "#ffffff"));
+
         sliderList.add(new Slider(R.mipmap.s4, "#ffffff"));
         sliderList.add(new Slider(R.mipmap.s5, "#ffffff"));
         sliderList.add(new Slider(R.mipmap.s6, "#ffffff"));
-        // pothom da
-
+        sliderList.add(new Slider(R.mipmap.d5, "#ffffff"));
+        sliderList.add(new Slider(R.mipmap.d5, "#ffffff"));
         sliderList.add(new Slider(R.mipmap.s1, "#ffffff"));
+
         sliderList.add(new Slider(R.mipmap.s2, "#ffffff"));
-
-        SliderAdapter sliderAdapter = new SliderAdapter(sliderList);
-        sliderViewPager.setAdapter(sliderAdapter);
-        sliderViewPager.setClipToPadding(false);
-        sliderViewPager.setPageMargin(20);
-        sliderViewPager.setCurrentItem(dummyInt);
-        sliderAdapter.notifyDataSetChanged();
-        //// page listener
-        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i1) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                dummyInt = i;
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-                if (i == ViewPager.SCROLL_STATE_IDLE){
-                    pagerLooper();
-                }
-            }
-        };
-        sliderViewPager.addOnPageChangeListener(onPageChangeListener);
-
-        startSlideShow();
-
-        // touch listener
-        sliderViewPager.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                pagerLooper();
-                stopSliderShow();
-                if (event.getAction() == MotionEvent.ACTION_UP){
-                    startSlideShow();
-                }
-                return false;
-            }
-
-
-        });
-        //////////////////
+        sliderList.add(new Slider(R.mipmap.s3, "#ffffff"));
+        sliderList.add(new Slider(R.mipmap.s4, "#ffffff"));
 
 
 
-        //////////////////
-        // todo: strip add
-        stripImage = view.findViewById(R.id.strip_ad_imageView);
-        stripContainer = view.findViewById(R.id.strip_ad_container);
 
-        stripImage.setImageResource(R.mipmap.s1);
-        stripContainer.setBackgroundColor(Color.parseColor("#000000"));
-        //////////////////
-
-        //////////////////
-        // todo: deals
         List<ProductModelLite> productModelLiteList = new ArrayList<>();
         productModelLiteList.add(new ProductModelLite(R.mipmap.d1, "Redmi 5", "Snapdragon 450", "$199"));
         productModelLiteList.add(new ProductModelLite(R.mipmap.d2, "Redmi 5", "Snapdragon 450", "$199"));
@@ -201,73 +113,27 @@ public class HomeFragment extends Fragment {
         productModelLiteList.add(new ProductModelLite(R.mipmap.d6, "Redmi 5", "Snapdragon 450", "$199"));
         productModelLiteList.add(new ProductModelLite(R.mipmap.d1, "Redmi 5", "Snapdragon 450", "$199"));
         productModelLiteList.add(new ProductModelLite(R.mipmap.d3, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d6, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d1, "Redmi 5", "Snapdragon 450", "$199"));
+        productModelLiteList.add(new ProductModelLite(R.mipmap.d3, "Redmi 5", "Snapdragon 450", "$199"));
 
 
-        dealsLayoutTile = view.findViewById(R.id.deals_layout_title);
-        dealsViewAllButton = view.findViewById(R.id.deals_layout_button);
-        dealsRecyclerView = view.findViewById(R.id.deals_layout_recyclerView);
 
-        DealsAdapter dealsAdapter = new DealsAdapter(productModelLiteList);
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        dealsRecyclerView.setLayoutManager(linearLayoutManager);
-        dealsRecyclerView.setAdapter(dealsAdapter);
-        dealsAdapter.notifyDataSetChanged();
-        /////////////////
+        // HomePage Content recyclerView
+        homeContentRecyclerView = view.findViewById(R.id.home_fragment_content);
+        LinearLayoutManager testM = new LinearLayoutManager(getContext());
+        testM.setOrientation(LinearLayoutManager.VERTICAL);
+        homeContentRecyclerView.setLayoutManager(testM);
+        List<HomePageModel> homePageModels = new ArrayList<>();
+        homePageModels.add(new HomePageModel(0, sliderList));
+        homePageModels.add(new HomePageModel(1, R.mipmap.stripadd, "#000000"));
+        homePageModels.add(new HomePageModel(2,  "Deals of the day", productModelLiteList));
+        homePageModels.add(new HomePageModel(3, "Featured Product", productModelLiteList));
 
-
-        /////////////////
-        // todo: Grid product
-        gridLayoutTitle = view.findViewById(R.id.homefragment_grid_product_title);
-        gridViewAllButton = view.findViewById(R.id.homefragment_grid_product_button);
-        gridLayoutGridView = view.findViewById(R.id.homefragment_grid_product_gridview);
-
-        gridLayoutGridView.setAdapter(new GridProductAdapter(productModelLiteList));
-        /////////////////
+        HomePageAdapter homePageAdapter = new HomePageAdapter(homePageModels);
+        homeContentRecyclerView.setAdapter(homePageAdapter);
+        homePageAdapter.notifyDataSetChanged();
         return view;
     }
-
-
-
-    ////////////////////
-
-    private void pagerLooper(){
-        if (dummyInt == sliderList.size() - 2){
-            dummyInt = 2;
-            sliderViewPager.setCurrentItem(dummyInt, false);
-        }
-
-        if (dummyInt == 1){
-            dummyInt = sliderList.size() - 3;
-            sliderViewPager.setCurrentItem(dummyInt, false);
-        }
-
-
-    }
-
-    private void startSlideShow(){
-        final Handler handler = new Handler();
-        final Runnable update = new Runnable() {
-            @Override
-            public void run() {
-                if (dummyInt >= sliderList.size()){
-                    dummyInt = 1;
-                }
-                sliderViewPager.setCurrentItem(dummyInt++, true);
-            }
-        };
-        timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                handler.post(update);
-            }
-        }, DELAY_TIME, PERIOD_TIME);
-    }
-
-    private void stopSliderShow(){
-        timer.cancel();
-    }
-    ////////////////////
 
 }
