@@ -1,4 +1,4 @@
-package com.prophet.ecommerce;
+package com.prophet.ecommerce.fragment;
 
 
 import android.os.Bundle;
@@ -7,14 +7,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.prophet.ecommerce.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductDetailDescriptionFragment extends Fragment {
+public class OrderDetailsFragment extends Fragment {
 
 
-    public ProductDetailDescriptionFragment() {
+    public OrderDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -23,7 +25,7 @@ public class ProductDetailDescriptionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product_detail_description, container, false);
+        return inflater.inflate(R.layout.fragment_order_details, container, false);
     }
 
 }

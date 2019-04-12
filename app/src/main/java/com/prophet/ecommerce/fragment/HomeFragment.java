@@ -1,4 +1,4 @@
-package com.prophet.ecommerce;
+package com.prophet.ecommerce.fragment;
 
 
 import android.graphics.Color;
@@ -18,6 +18,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.prophet.ecommerce.R;
 import com.prophet.ecommerce.adapter.category.CategoryAdapter;
 import com.prophet.ecommerce.adapter.homeFragment.GridProductAdapter;
 import com.prophet.ecommerce.adapter.homeFragment.SliderAdapter;

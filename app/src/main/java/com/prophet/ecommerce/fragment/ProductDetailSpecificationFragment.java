@@ -1,4 +1,4 @@
-package com.prophet.ecommerce;
+package com.prophet.ecommerce.fragment;
 
 
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.prophet.ecommerce.R;
 import com.prophet.ecommerce.adapter.product.ProductSpecificationAdapter;
 import com.prophet.ecommerce.model.product.ProductSpecificationModel;
 

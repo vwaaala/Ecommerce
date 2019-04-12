@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.prophet.ecommerce.ProductDetailDescriptionFragment;
-import com.prophet.ecommerce.ProductDetailSpecificationFragment;
+import com.prophet.ecommerce.fragment.ProductDetailDescriptionFragment;
+import com.prophet.ecommerce.fragment.ProductDetailSpecificationFragment;
 
 public class ProductDetailDescriptionAdapter extends FragmentPagerAdapter {
     private int totalTabs;

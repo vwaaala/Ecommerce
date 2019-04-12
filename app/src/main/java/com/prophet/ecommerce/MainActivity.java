@@ -13,14 +13,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
+import com.prophet.ecommerce.fragment.HomeFragment;
+import com.prophet.ecommerce.fragment.OrderFragment;
+
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int HOME_FRAGMENT = 0;
-    private static final int CART_FRAGMENT = 1;
+    private static final int ORDER_FRAGMENT = 1;
+    private static final int CART_FRAGMENT = 2;
 
     private FrameLayout frameLayout;
-    private static int CURRENT_FRAGMENT;
+    private static int CURRENT_FRAGMENT = -1;
     private NavigationView navigationView;
 
     @Override
@@ -29,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle("Dashboard");
+
 
         // Casting layout elements
         frameLayout = findViewById(R.id.main_frame);
@@ -81,7 +85,7 @@ public class MainActivity extends AppCompatActivity
         } else if ( id == R.id.action_notification){
             // todo: notification
         } else if ( id == R.id.action_cart){
-            myCart();
+            switchFragment(new CartFragment(), CART_FRAGMENT, "My Cart");
         }
 
         return super.onOptionsItemSelected(item);
@@ -94,12 +98,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home){
+            getSupportActionBar().setTitle("Home");
             invalidateOptionsMenu();
             setFragment(new HomeFragment(), HOME_FRAGMENT);
         } else if (id == R.id.nav_order) {
-
+            switchFragment(new OrderFragment(), ORDER_FRAGMENT, "My Orders");
         } else if (id == R.id.nav_cart) {
-            myCart();
+            switchFragment(new CartFragment(), CART_FRAGMENT, "My Cart");
         } else if (id == R.id.nav_wishlist) {
 
         } else if (id == R.id.nav_reward) {
@@ -120,7 +125,7 @@ public class MainActivity extends AppCompatActivity
      *
      */
     private void setFragment(Fragment fragment, int fragmentNo){
-        if (CURRENT_FRAGMENT != CURRENT_FRAGMENT){
+        if (fragmentNo != CURRENT_FRAGMENT){
             CURRENT_FRAGMENT = fragmentNo;
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.setCustomAnimations(R.anim.fade_in, R.anim.fade_out);
@@ -129,10 +134,15 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    private void myCart(){
+
+    private void switchFragment(Fragment fragment, int position, String title){
         // runs onCreateOptionMenu again
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle(title);
         invalidateOptionsMenu();
-        setFragment(new CartFragment(), CART_FRAGMENT);
-        navigationView.getMenu().getItem(2).setChecked(true);
+        setFragment(fragment, position);
+        if (position == CART_FRAGMENT){
+            navigationView.getMenu().getItem(2).setChecked(true);
+        }
     }
 }

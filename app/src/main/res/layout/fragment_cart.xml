@@ -3,26 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    tools:context=".CartFragment">
+    android:layout_height="wrap_content">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/cart_fragment_recyclerview"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_height="match_parent"
         android:background="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout6"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContainer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/linearLayout6"
+        android:id="@+id/buttonContainer"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
         android:layout_margin="8dp"
-        android:layout_marginStart="8dp"
         android:background="@drawable/round_corner"
         android:elevation="8dp"
         android:orientation="horizontal"
@@ -68,14 +65,14 @@
             android:id="@+id/fragment_cart_buy_now_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="8dp"
+            android:layout_margin="4dp"
             android:layout_weight="1"
             android:background="@drawable/button_selector_shape"
             android:clickable="true"
             android:focusable="true"
             android:paddingStart="8dp"
             android:paddingEnd="8dp"
-            android:text="BUY NOW"
+            android:text="CONFIRM"
             android:textAppearance="@android:style/TextAppearance.Material.Button"
             android:textColor="@color/colorPrimary"
             android:textSize="16sp" />

@@ -6,10 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
     android:layout_marginBottom="4dp"
-    android:layout_marginStart="8dp"
-    android:layout_marginEnd="8dp"
     android:elevation="3dp"
-    android:background="@drawable/border_background">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/cart_item_product_imageview"
@@ -174,7 +172,9 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="@drawable/border_background"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="@drawable/button_selector_shape"
         android:backgroundTint="@color/buttonRed"
         android:gravity="center"
         android:orientation="horizontal"
@@ -188,9 +188,10 @@
             android:layout_height="match_parent"
             android:drawableStart="@drawable/ic_delete"
             android:drawablePadding="4dp"
-            android:drawableTint="@color/buttonRed"
+            android:drawableTint="@color/white"
             android:gravity="center"
             android:text="REMOVE ITEM"
-            android:textColor="@color/buttonRed" />
+            android:textStyle="bold"
+            android:textColor="@color/white" />
     </LinearLayout>
 </android.support.constraint.ConstraintLayout>
