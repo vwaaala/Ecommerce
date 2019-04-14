@@ -1,5 +1,6 @@
 package com.prophet.ecommerce;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,10 +12,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import com.prophet.ecommerce.fragment.HomeFragment;
+import com.prophet.ecommerce.fragment.MyAccountFragment;
 import com.prophet.ecommerce.fragment.OrderFragment;
+import com.prophet.ecommerce.fragment.RewardFragment;
+import com.prophet.ecommerce.fragment.WishListFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,18 +28,24 @@ public class MainActivity extends AppCompatActivity
     private static final int HOME_FRAGMENT = 0;
     private static final int ORDER_FRAGMENT = 1;
     private static final int CART_FRAGMENT = 2;
+    private static final int WISHLIST_FRAGMENT = 3;
+    private static final int REWARD_FRAGMENT = 4;
+    private static final int ACCOUNT_FRAGMENT = 5;
 
     private FrameLayout frameLayout;
     private static int CURRENT_FRAGMENT = -1;
     private NavigationView navigationView;
+    private Toolbar toolbar;
+    // private Window window;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        // window = getWindow();
+        // window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
 
         // Casting layout elements
         frameLayout = findViewById(R.id.main_frame);
@@ -57,7 +69,14 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            if (CURRENT_FRAGMENT == HOME_FRAGMENT){
+                super.onBackPressed();
+            }else {
+                getSupportActionBar().setTitle("Home");
+                invalidateOptionsMenu();
+                setFragment(new HomeFragment(), HOME_FRAGMENT);
+                navigationView.getMenu().getItem(0).setChecked(true);
+            }
         }
     }
 
@@ -106,11 +125,11 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_cart) {
             switchFragment(new CartFragment(), CART_FRAGMENT, "My Cart");
         } else if (id == R.id.nav_wishlist) {
-
+            switchFragment(new WishListFragment(), WISHLIST_FRAGMENT, "My WishList");
         } else if (id == R.id.nav_reward) {
-
+            switchFragment(new RewardFragment(), REWARD_FRAGMENT, "My Rewards");
         } else if (id == R.id.nav_account) {
-
+            switchFragment(new MyAccountFragment(), ACCOUNT_FRAGMENT, "My Account");
         } else if (id == R.id.nav_signOut){
             // todo: signout
         }
@@ -139,10 +158,17 @@ public class MainActivity extends AppCompatActivity
         // runs onCreateOptionMenu again
         getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setTitle(title);
-        invalidateOptionsMenu();
-        setFragment(fragment, position);
+
         if (position == CART_FRAGMENT){
             navigationView.getMenu().getItem(2).setChecked(true);
         }
+        if (position == REWARD_FRAGMENT){
+            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        }else {
+            toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+            invalidateOptionsMenu();
+        }
+
+        setFragment(fragment, position);
     }
 }

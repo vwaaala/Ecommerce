@@ -1,5 +1,6 @@
 package com.prophet.ecommerce.adapter;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.prophet.ecommerce.OrderDetailActivity;
 import com.prophet.ecommerce.R;
 import com.prophet.ecommerce.model.order.OrderItem;
 
@@ -51,13 +53,21 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.ViewHolder> 
         private ImageView image;
         private ImageView indicator;
         private LinearLayout ratingContainer;
-        public ViewHolder(@NonNull View itemView) {
+        public ViewHolder(@NonNull final View itemView) {
             super(itemView);
             title = itemView.findViewById(R.id.order_item_layout_title);
             deliveryStatus = itemView.findViewById(R.id.order_item_layout_delivery_status);
             image = itemView.findViewById(R.id.order_item_layout_image);
             indicator = itemView.findViewById(R.id.order_item_layout_indicator);
             ratingContainer = itemView.findViewById(R.id.order_item_layout__star_container);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(itemView.getContext(), OrderDetailActivity.class);
+                    itemView.getContext().startActivity(intent);
+                }
+            });
         }
         private void setData(String titleText, int productImage, String status, int rating){
             title.setText(titleText);

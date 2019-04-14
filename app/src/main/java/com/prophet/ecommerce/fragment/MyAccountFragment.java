@@ -9,14 +9,13 @@ import android.view.ViewGroup;
 
 import com.prophet.ecommerce.R;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class OrderDetailsFragment extends Fragment {
+public class MyAccountFragment extends Fragment {
 
 
-    public OrderDetailsFragment() {
+    public MyAccountFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +24,7 @@ public class OrderDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_order_details, container, false);
+        return inflater.inflate(R.layout.fragment_my_account, container, false);
     }
 
 }

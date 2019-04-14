@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
-    android:background="@drawable/border_background"
+    android:background="@drawable/rounded_corner"
     android:elevation="3dp"
     android:id="@+id/fragment_product_detail_specification_lite_container">
 

@@ -21,7 +21,7 @@ public class SplashActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         // Sleeps this activity after 3seconds
-        SystemClock.sleep(1500);
+        SystemClock.sleep(500);
 
     }
 
