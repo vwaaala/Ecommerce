@@ -1,14 +1,13 @@
 package com.prophet.ecommerce;
 
-
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.prophet.ecommerce.adapter.cart.CartAdapter;
 import com.prophet.ecommerce.model.cart.CartItemModel;
@@ -16,32 +15,25 @@ import com.prophet.ecommerce.model.cart.CartItemModel;
 import java.util.ArrayList;
 import java.util.List;
 
+public class DeliveryActivity extends AppCompatActivity {
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class CartFragment extends Fragment {
-
-
-    public CartFragment() {
-        // Required empty public constructor
-    }
     private RecyclerView recyclerView;
-
+    private Button editAddressButton;
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getActivity().setTitle("My Cart");
-    }
+        setContentView(R.layout.activity_delivery);
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_cart, container, false);
-        recyclerView = view.findViewById(R.id.cart_fragment_recyclerview);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Delivery");
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
+        recyclerView = findViewById(R.id.activity_delivery_recyclerview);
+        editAddressButton = findViewById(R.id.shipping_detail_layout_button);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
 
@@ -54,7 +46,15 @@ public class CartFragment extends Fragment {
         CartAdapter cartAdapter = new CartAdapter(cartItemModelList);
         recyclerView.setAdapter(cartAdapter);
         cartAdapter.notifyDataSetChanged();
-        return view;
+        editAddressButton.setVisibility(View.VISIBLE);
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home){
+            finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

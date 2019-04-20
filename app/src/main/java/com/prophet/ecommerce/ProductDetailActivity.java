@@ -1,5 +1,6 @@
 package com.prophet.ecommerce;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
@@ -11,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -26,6 +28,7 @@ public class ProductDetailActivity extends AppCompatActivity {
     private TabLayout viewPagerIndicator;
     private FloatingActionButton wishlistButton;
     private static Boolean alreadyWishlist = false;
+    private Button buyNowButton;
 
 
     ////////////
@@ -46,12 +49,14 @@ public class ProductDetailActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         // Disable activity title on app bar
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Product Detail");
 
         imageViewPager = findViewById(R.id.product_detail_image_viewpager);
         viewPagerIndicator = findViewById(R.id.product_detail_image_indicator);
         wishlistButton = findViewById(R.id.product_detail_image_btn_wishlist);
+        buyNowButton = findViewById(R.id.activity_product_detail_buy_now);
 
         ///////////
         // TabLayout
@@ -116,6 +121,13 @@ public class ProductDetailActivity extends AppCompatActivity {
             }
         });
 
+        buyNowButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductDetailActivity.this, DeliveryActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override

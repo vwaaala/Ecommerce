@@ -32,8 +32,8 @@
 
     <ImageView
         android:id="@+id/cart_item_free_coupon_ic"
-        android:layout_width="15dp"
-        android:layout_height="15dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
         android:layout_marginTop="4dp"
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="@+id/cart_item_product_title"
@@ -131,15 +131,15 @@
         android:id="@+id/cart_item_layout_coupon_container"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@drawable/rounded_corner"
-        android:backgroundTint="@color/colorAccent"
-        android:elevation="3dp"
+        android:layout_margin="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/round_corner"
+        android:backgroundTint="@color/white"
+        android:elevation="1dp"
         android:gravity="right"
         android:orientation="horizontal"
         android:padding="@dimen/activity_horizontal_margin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cart_item_layout_coupon_applied">
@@ -156,7 +156,7 @@
             android:id="@+id/product_detail_image_coupon_redeem_button"
             android:layout_width="90dp"
             android:layout_height="40dp"
-            android:background="@drawable/rounded_corner"
+            android:background="@drawable/round_corner"
             android:clickable="true"
             android:elevation="3dp"
             android:focusable="true"
@@ -165,36 +165,19 @@
             android:textColor="@color/colorPrimary" />
     </LinearLayout>
 
-    <LinearLayout
+    <ImageButton
         android:id="@+id/cart_item_layout_remove_button"
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:paddingStart="8dp"
-        android:paddingEnd="8dp"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:tint="@color/buttonRed"
         android:clickable="true"
         android:focusable="true"
-        android:background="@drawable/button_selector_secondary"
-        android:gravity="center"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/ic_delete"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cart_item_layout_coupon_container">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:drawableStart="@drawable/ic_delete"
-            android:drawablePadding="4dp"
-            android:drawableTint="@color/buttonRed"
-            android:gravity="center"
-            android:text="REMOVE ITEM"
-            android:textAppearance="@android:style/TextAppearance.Material.Button"
-            android:textColor="@color/buttonRed"
-            android:textStyle="bold" />
-    </LinearLayout>
+    </ImageButton>
 </android.support.constraint.ConstraintLayout>

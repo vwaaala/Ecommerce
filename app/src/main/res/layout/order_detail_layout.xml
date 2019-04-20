@@ -63,7 +63,7 @@
         app:layout_constraintTop_toBottomOf="@+id/order_detail_layout_image" />
 
     <ImageView
-        android:id="@+id/order_detail_layout_ordered_indicator"
+        android:id="@+id/profile_ordered_indicator"
         android:layout_width="15dp"
         android:layout_height="15dp"
         android:layout_marginStart="16dp"
@@ -85,8 +85,8 @@
         android:progressTint="@color/colorPrimary"
         android:rotation="90"
         android:transformPivotX="0dp"
-        app:layout_constraintStart_toStartOf="@+id/order_detail_layout_ordered_indicator"
-        app:layout_constraintTop_toTopOf="@+id/order_detail_layout_ordered_indicator" />
+        app:layout_constraintStart_toStartOf="@+id/profile_ordered_indicator"
+        app:layout_constraintTop_toTopOf="@+id/profile_ordered_indicator" />
 
     <ImageView
         android:id="@+id/order_detail_layout_packed_indicator"
@@ -96,7 +96,7 @@
         android:layout_marginTop="50dp"
         android:tint="@color/colorAccent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/order_detail_layout_ordered_indicator"
+        app:layout_constraintTop_toBottomOf="@+id/profile_ordered_indicator"
         app:srcCompat="@drawable/indicator_dot_selector" />
 
     <ProgressBar
@@ -158,9 +158,9 @@
         android:layout_marginStart="8dp"
         android:text="Order status"
         android:textAppearance="@android:style/TextAppearance.Material.Caption"
-        app:layout_constraintBottom_toBottomOf="@+id/order_detail_layout_ordered_indicator"
-        app:layout_constraintStart_toEndOf="@+id/order_detail_layout_ordered_indicator"
-        app:layout_constraintTop_toTopOf="@+id/order_detail_layout_ordered_indicator" />
+        app:layout_constraintBottom_toBottomOf="@+id/profile_ordered_indicator"
+        app:layout_constraintStart_toEndOf="@+id/profile_ordered_indicator"
+        app:layout_constraintTop_toTopOf="@+id/profile_ordered_indicator" />
 
     <TextView
         android:id="@+id/order_detail_layout_order_date"

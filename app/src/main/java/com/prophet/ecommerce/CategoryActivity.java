@@ -31,7 +31,7 @@ public class CategoryActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(title);
 
-        categoryRecyclerview = findViewById(R.id.category_recyclerView);
+        categoryRecyclerview = findViewById(R.id.category_activity_recyclerVIew);
 
 
 

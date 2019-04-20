@@ -24,6 +24,18 @@
             <include layout="@layout/profile_order_status_layout"/>
             <include layout="@layout/recent_order_layout"/>
             <include layout="@layout/address_layout"/>
+
+            <Button
+                android:id="@+id/profile_layout_signout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:padding="8dp"
+                android:background="@drawable/button_selector_primary"
+                android:text="Sign out"
+                android:textAppearance="@android:style/TextAppearance.Material.Widget.Button"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
         </LinearLayout>
     </ScrollView>
 </android.support.constraint.ConstraintLayout>

@@ -9,9 +9,10 @@
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/rectangle_background"
+        android:elevation="4dp"
         android:fontFamily="sans-serif-thin"
         android:padding="4dp"
         android:text="Your current order status"
@@ -25,6 +26,7 @@
         android:layout_height="80dp"
         android:layout_marginTop="8dp"
         android:src="@mipmap/s4"
+        android:elevation="3dp"
         app:civ_border_color="@color/white"
         app:civ_border_width="2dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,12 +34,13 @@
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
     <TextView
-        android:id="@+id/textView12"
+        android:id="@+id/profile_delivery_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@drawable/rectangle_background"
         android:backgroundTint="@color/buttonRed"
+        android:elevation="3dp"
         android:padding="4dp"
         android:text="OUT FOR DELIVERY"
         android:textAppearance="@android:style/TextAppearance.Material.Title"
@@ -47,109 +50,79 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile_order_status_product_image" />
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/rectangle_background"
-        android:elevation="3dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:padding="8dp"
+        android:orientation="horizontal"
+        android:background="@drawable/rounded_corner"
+        android:elevation="3dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView12">
+        app:layout_constraintTop_toBottomOf="@+id/profile_delivery_textview">
 
         <ImageView
-            android:id="@+id/order_detail_layout_ordered_indicator"
+            android:id="@+id/profile_ordered_indicator"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:tint="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/indicator_dot_selector" />
+            android:src="@drawable/default_indicator_secondary_dot"
+            android:translationX="12dp"/>
 
         <ProgressBar
-            android:id="@+id/order_detail_layout_order_packed_progressbar"
+            android:id="@+id/profile_order_packed_progressbar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="60dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="9dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:progress="100"
-            android:progressBackgroundTint="@color/colorAccent"
             android:progressTint="@color/colorPrimary"
-            android:transformPivotX="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/order_detail_layout_ordered_indicator"
-            app:layout_constraintStart_toStartOf="@+id/order_detail_layout_ordered_indicator"
-            app:layout_constraintTop_toTopOf="@+id/order_detail_layout_ordered_indicator" />
+            android:translationX="8dp" />
 
         <ImageView
-            android:id="@+id/order_detail_layout_packed_indicator"
+            android:id="@+id/profile_packed_indicator"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="16dp"
-            android:tint="@color/colorPrimary"
-            app:layout_constraintStart_toEndOf="@+id/order_detail_layout_ordered_indicator"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/indicator_dot_selector" />
+            android:src="@drawable/default_indicator_secondary_dot"
+            android:translationX="4dp"/>
 
         <ProgressBar
-            android:id="@+id/order_detail_layout_packed_shipped_progressbar"
+            android:id="@+id/profile_packed_shipped_progressbar"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="60dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:progress="100"
-            android:progressBackgroundTint="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:progressTint="@color/colorPrimary"
-            android:transformPivotX="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/order_detail_layout_packed_indicator"
-            app:layout_constraintStart_toStartOf="@+id/order_detail_layout_packed_indicator"
-            app:layout_constraintTop_toTopOf="@+id/order_detail_layout_packed_indicator" />
+            android:progress="100"/>
 
         <ImageView
-            android:id="@+id/order_detail_layout_shipped_indicator"
+            android:id="@+id/profile_shipped_indicator"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="16dp"
-            android:tint="@color/colorPrimary"
-            app:layout_constraintStart_toEndOf="@+id/order_detail_layout_packed_indicator"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/indicator_dot_selector" />
+            android:src="@drawable/default_indicator_secondary_dot"
+            android:translationX="-4dp"/>
 
         <ProgressBar
-            android:id="@+id/order_detail_layout_shipped_delivered_progress"
+            android:id="@+id/profile_shipped_delivered_progress"
             style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="60dp"
-            android:layout_height="3dp"
-            android:layout_marginStart="9dp"
-            android:progress="100"
-            android:progressBackgroundTint="@color/colorAccent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:translationX="-8dp"
             android:progressTint="@color/colorPrimary"
-            android:transformPivotX="0dp"
-            app:layout_constraintBottom_toBottomOf="@+id/order_detail_layout_shipped_indicator"
-            app:layout_constraintStart_toStartOf="@+id/order_detail_layout_shipped_indicator"
-            app:layout_constraintTop_toTopOf="@+id/order_detail_layout_shipped_indicator" />
+            android:progress="100"/>
 
         <ImageView
-            android:id="@+id/order_detail_layout_delivered_indicator"
+            android:id="@+id/profile_delivered_indicator"
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="16dp"
-            android:tint="@color/colorPrimary"
-            app:layout_constraintStart_toEndOf="@+id/order_detail_layout_shipped_indicator"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/indicator_dot_selector" />
+            android:src="@drawable/default_indicator_secondary_dot"
+            android:translationX="-12dp"/>
 
-    </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
